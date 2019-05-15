@@ -1,7 +1,8 @@
 #include <stdio.h>
+#include <stdbool.h>
 #define MAX_ELE 20
 
-void swap(int *a, int *b)
+static void swap(int *a, int *b)
 {
 	int temp = *a;
 	*a = *b;
@@ -26,6 +27,7 @@ void bubble_sort(int *arr, int n)
 	}
 }
 
+#if 0
 int main ()
 {
 	int array[] = {-2, 0, -9, 45, 11, 4, 10};
@@ -46,3 +48,4 @@ int main ()
 
 	return 0;
 }
+#endif

@@ -7,16 +7,19 @@
  * */
 
 #include <stdio.h>
+
+#include "HeapSort.h"
+
 #define MAX_ELE 20
 
-void swap(int *a, int *b)
+static void swap(int *a, int *b)
 {
 	int temp = *a;
 	*a = *b;
 	*b = temp;
 }
 
-void heapify(int *arr, int n, int i)
+static void heapify(int *arr, int n, int i)
 {
 	int largest = i;
 	int lt = 2 * i + 1;
@@ -46,7 +49,7 @@ void heapsort(int *arr, int n)
 	}
 }
 
-
+#if 0
 int main ()
 {
 	int array[] = {-2, 0, -9, 45, 11, 4, 10};
@@ -67,3 +70,4 @@ int main ()
 
 	return 0;
 }
+#endif

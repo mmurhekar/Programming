@@ -1,14 +1,17 @@
 #include <stdio.h>
+
+#include "QuickSort.h"
+
 #define MAX_ELE 20
 
-void swap(int *a, int *b)
+static void swap(int *a, int *b)
 {
 	int temp = *a;
 	*a = *b;
 	*b = temp;
 }
 
-int partition(int *arr, int low, int high)
+static int partition(int *arr, int low, int high)
 {
 	int pivot;
 	int i, j;
@@ -35,7 +38,7 @@ void quicksort(int *arr, int low, int high)
 		quicksort(arr, pi + 1, high);
 	}
 }
-
+#if 0
 int main ()
 {
 	int array[] = {-2, 0, -9, 45, 55, 67, 90, 2, 1, 5, 11, 4, 10, -100, 100};
@@ -57,3 +60,4 @@ int main ()
 
 	return 0;
 }
+#endif

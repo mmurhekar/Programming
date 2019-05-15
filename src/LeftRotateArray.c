@@ -1,7 +1,10 @@
 #include <stdio.h>
+
+#include "LeftRotateArray.h"
+
 #define MAX 10
 
-void leftRotateByOne(int *a, int n)
+static void leftRotateByOne(int *a, int n)
 {
 	int temp = a[0];
 	int i;
@@ -18,7 +21,7 @@ void LeftRotate(int *a, int num, int n)
 		leftRotateByOne(a, n);
 }
 
-
+#if 0
 int main ()
 {
 	int arry[] = {1, 2, 3, 4, 5, 6, 7};
@@ -40,3 +43,4 @@ int main ()
 
 	return 0;
 }
+#endif

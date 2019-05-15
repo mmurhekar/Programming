@@ -5,38 +5,31 @@
 #include <stdio.h>
 #include <malloc.h>
 
+#include "Heap.h"
+
 #define PARENT(x) (x - 1) / 2
 #define LCHILD(x) (2 * x + 1)
 #define RCHILD(x) (2 * x + 2)
 
-typedef struct {
-	int data;
-} node_t;
-
-typedef struct {
-	int size;
-	int count;
-	node_t *elem;
-} heap_t;
 
 heap_t max_heap;
 
 void init_heap (int size)
 {
 	max_heap.size = size;
-	max_heap.elem = (node_t *) calloc (size, sizeof(node_t));
+	max_heap.elem = (heapNode *) calloc (size, sizeof(heapNode));
 	return;
 }
 
-void swap (node_t *n1, node_t *n2)
+static void swap (heapNode *n1, heapNode *n2)
 {
-	node_t temp = *n1;
+	heapNode temp = *n1;
 
 	*n1 = *n2;
 	*n2 = temp;
 }
 
-void heapify (int i)
+static void heapify (int i)
 {
 	int largest = i;
 
@@ -80,9 +73,6 @@ void insert_node (int data)
 
 void delete_node(void)
 {
-	int i;
-	node_t *temp = NULL;
-
 	printf("Deleteing node = %d\n", max_heap.elem[0].data);
 	max_heap.elem[0].data = max_heap.elem[max_heap.size - 1].data;
 	max_heap.size -= 1;
@@ -98,6 +88,7 @@ void display_heap(void)
 	printf("\n");
 }
 
+#if 0
 int main ()
 {
 	int arr[] = {9, 4, 2, 1, 3, 99, 89, 34, 76, 10};
@@ -124,3 +115,4 @@ int main ()
 
 	return 0;
 }
+#endif

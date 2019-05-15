@@ -1,0 +1,43 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+PROJECT(Programming C)
+
+SET(PACKAGE ${PROJECT_NAME})
+SET(PREFIX ${CMAKE_INSTALL_PREFIX})
+SET(BINDIR "${PREFIX}/sbin")
+SET(DATADIR "${PREFIX}/share")
+SET(LIBDIR "${PREFIX}/lib")
+
+SET(SRCS
+    src/AVL_Tree.c
+    src/Bubble_Sort.c
+    src/Heap.c
+    src/HeapSort.c
+    src/LeftRotateArray.c
+    src/Linklist.c
+    src/MergeSort.c
+    src/QuickSort.c
+    src/main.c
+   )
+
+INCLUDE(FindPkgConfig)
+PKG_CHECK_MODULES(pkgs REQUIRED
+				glib-2.0
+				gio-unix-2.0
+				)
+
+FOREACH(flag ${pkgs_CFLAGS})
+	SET(EXTRA_CFLAGS "${EXTRA_CFLAGS} ${flag}")
+ENDFOREACH(flag)
+
+IF("${CMAKE_BUILD_TYPE}" STREQUAL "")
+    SET(CMAKE_BUILD_TYPE "Debug")
+ENDIF("${CMAKE_BUILD_TYPE}" STREQUAL "")
+MESSAGE("Build type: ${CMAKE_BUILD_TYPE}")
+
+SET(EXTRA_CFLAGS "${EXTRA_CFLAGS} -Wall")
+SET(CMAKE_C_FLAGS "-I${CMAKE_SOURCE_DIR} -I${CMAKE_SOURCE_DIR}/include ${CMAKE_C_FLAGS} ${EXTRA_CFLAGS}")
+SET(CMAKE_C_FLAGS_DEBUG "-O0 -g")
+
+ADD_EXECUTABLE(${PROJECT_NAME} ${SRCS})
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${pkgs_LDFLAGS})
+INSTALL(TARGETS ${PROJECT_NAME} DESTINATION ${BINDIR})

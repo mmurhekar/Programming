@@ -3,19 +3,15 @@
  * Divide and Conquer method */
 
 #include <stdio.h>
-#define MAX_ELE 20
 
-void swap(int *a, int *b)
-{
-	int temp = *a;
-	*a = *b;
-	*b = temp;
-}
+#include "MeregeSort.h"
+
+#define MAX_ELE 20
 
 /*
  * arr = 34 5 0 2 1 10 3 */
 
-void merge(int *arr, int l, int m, int r)
+static void merge(int *arr, int l, int m, int r)
 {
 	int n1 = m - l + 1;
 	int n2 = r - m;
@@ -65,7 +61,7 @@ void mergesort(int *arr, int l, int r)
 		merge(arr, l, mid, r);
 	}
 }
-
+#if 0
 int main ()
 {
 	int array[] = {-2, 0, -9, 45, 11, 4, 10};
@@ -87,3 +83,4 @@ int main ()
 
 	return 0;
 }
+#endif

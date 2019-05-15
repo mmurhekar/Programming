@@ -3,22 +3,19 @@
 #include <stdio.h>
 #include <malloc.h>
 
-typedef struct node_t {
-	int data;
-	struct node_t *next;
-} node;
+#include "LinkedList.h"
 
-void insert_new_node(node **head, int data)
+void insert_new_node(listNode **head, int data)
 {
-	node *nodeptr = (node *)calloc(1, sizeof(node));
+	listNode *nodeptr = (listNode *)calloc(1, sizeof(listNode));
 	nodeptr->data = data;
 	nodeptr->next = *head;
 	*head = nodeptr;
 }
 
-void reverseList(node **head)
+void reverseList(listNode **head)
 {
-	node *prev, *curr;
+	listNode *prev, *curr;
 
 	if (*head == NULL)
 		return;
@@ -27,7 +24,7 @@ void reverseList(node **head)
 	curr = *head;
 
 	while (curr != NULL) {
-		node *next = curr->next;
+		listNode *next = curr->next;
 		curr->next = prev;
 		prev = curr;
 		curr = next;
@@ -36,9 +33,9 @@ void reverseList(node **head)
 	*head = prev;
 }
 
-void evenList(node **head)
+void evenList(listNode **head)
 {
-	node *curr, *tail;
+	listNode *curr, *tail;
 
 	if (*head == NULL)
 		return;
@@ -50,7 +47,7 @@ void evenList(node **head)
 	if (curr == NULL)
 		return;
 
-	node dummy;
+	listNode dummy;
 	dummy.next = curr;
 	tail = dummy.next;
 	curr = curr->next;
@@ -66,12 +63,12 @@ void evenList(node **head)
 	*head = dummy.next;
 }
 
-node *swapNodes(node *head, int key1, int key2)
+listNode *swapNodes(listNode *head, int key1, int key2)
 {
 	if (head == NULL)
 		return head;
 
-	node *prev1, *curr1;
+	listNode *prev1, *curr1;
 	prev1 = NULL;
 	curr1 = head;
 	while (curr1 != NULL && curr1->data != key1) {
@@ -79,7 +76,7 @@ node *swapNodes(node *head, int key1, int key2)
 		curr1 = curr1->next;
 	}
 
-	node *prev2, *curr2;
+	listNode *prev2, *curr2;
 	prev2 = NULL;
 	curr2 = head;
 	while (curr2 != NULL && curr2->data != key2) {
@@ -103,7 +100,7 @@ node *swapNodes(node *head, int key1, int key2)
 	}
 
 	// swap next pointers of both nodes
-	node *tmp;
+	listNode *tmp;
 	tmp = curr1->next;
 	curr1->next = curr2->next;
 	curr2->next = tmp;
@@ -111,9 +108,9 @@ node *swapNodes(node *head, int key1, int key2)
 	return head;
 }
 
-node *reverseKNodes(node *head, int k)
+listNode *reverseKNodes(listNode *head, int k)
 {
-	node *prev, *curr, *next;
+	listNode *prev, *curr, *next;
 	int count = 0;
 
 	if (head == NULL)
@@ -139,10 +136,10 @@ node *reverseKNodes(node *head, int k)
 /*
  * Remove Duplicate nodes from Sorted Linklist
  * */
-void removeDuplicate1(node **head)
+void removeDuplicate1(listNode **head)
 {
-	node *curr = *head;
-	node *next = NULL;
+	listNode *curr = *head;
+	listNode *next = NULL;
 
 	if (curr == NULL)
 		return;
@@ -160,18 +157,18 @@ void removeDuplicate1(node **head)
 /*
  * Remove Duplicate nodes from Unsorted Linklist
  * */
-void removeDuplicate2(node **head)
+void removeDuplicate2(listNode **head)
 {
-	node *curr = *head;
+	listNode *curr = *head;
 
 	if (curr == NULL)
 		return;
 
 	while (curr != NULL) {
-		node *runner = curr;
+		listNode *runner = curr;
 		while (runner->next != NULL) {
 			if (runner->next->data == curr->data) {
-				node *next = runner->next->next;
+				listNode *next = runner->next->next;
 				free(runner->next);
 				runner->next = next;
 			}
@@ -180,9 +177,9 @@ void removeDuplicate2(node **head)
 	}
 }
 
-void printList(node *head)
+void printList(listNode *head)
 {
-	node *curr = head;
+	listNode *curr = head;
 	while (curr != NULL) {
 		printf("%d ", curr->data);
 		curr = curr->next;
@@ -190,9 +187,10 @@ void printList(node *head)
 	printf("\n");
 }
 
+#if 0
 int main ()
 {
-	node *head = NULL;
+	listNode *head = NULL;
 #if 1
 	insert_new_node(&head, 3);
 	insert_new_node(&head, 13);
@@ -247,3 +245,4 @@ int main ()
 
 	return 0;
 }
+#endif

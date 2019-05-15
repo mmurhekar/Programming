@@ -3,24 +3,19 @@
 #include <stdio.h>
 #include <malloc.h>
 
+#include "AVL_Tree.h"
+
 #define max(a,b) (a>b)?a:b
 
-typedef struct Node_t {
-	int data;
-	struct Node_t *left;
-	struct Node_t *right;
-	int height;
-} Node;
-
-int height(Node *nodeptr) {
+static int height(AVLNode *nodeptr) {
 	if (nodeptr)
 		return nodeptr->height;
 	return 0;
 }
 
-Node *get_new_node(int data)
+static AVLNode *get_new_node(int data)
 {
-	Node *node = (Node *)malloc(sizeof(Node));
+	AVLNode *node = (AVLNode *)malloc(sizeof(AVLNode));
 	node->data = data;
 	node->left = NULL;
 	node->right = NULL;
@@ -28,15 +23,15 @@ Node *get_new_node(int data)
 	return node;
 }
 
-int balanceFactor(Node *node) {
+static int balanceFactor(AVLNode *node) {
 	return (height(node->left) - height(node->right));
 }
 
 /* Right Rotation */
-Node *RotateRight(Node *y)
+static AVLNode *RotateRight(AVLNode *y)
 {
-	Node *x = y->left;
-	Node *T2 = x->right;
+	AVLNode *x = y->left;
+	AVLNode *T2 = x->right;
 
 	/* Rotate Right */
 	x->right = y;
@@ -49,10 +44,10 @@ Node *RotateRight(Node *y)
 }
 
 /* Left Rotation */
-Node *RotateLeft(Node *y)
+static AVLNode *RotateLeft(AVLNode *y)
 {
-	Node *x = y->right;
-	Node *T2 = x->left;
+	AVLNode *x = y->right;
+	AVLNode *T2 = x->left;
 
 	/* Rotate Left */
 	x->left = y;
@@ -64,10 +59,9 @@ Node *RotateLeft(Node *y)
 	return x;
 }
 
-Node *insert_into_avl_tree(Node *node, int key)
+AVLNode *insert_into_avl_tree(AVLNode *node, int key)
 {
 	int balance;
-	Node *nodeptr = NULL;
 
 	if (node == NULL)
 		return get_new_node(key);
@@ -115,7 +109,7 @@ Node *insert_into_avl_tree(Node *node, int key)
 	return node;
 }
 
-void PrintInOrder(Node *node)
+void PrintInOrder(AVLNode *node)
 {
 	if (node == NULL)
 		return;
@@ -125,9 +119,10 @@ void PrintInOrder(Node *node)
 	PrintInOrder(node->right);
 }
 
+#if 0
 int main()
 {
-	Node *root = NULL;
+	AVLNode *root = NULL;
 
 	root = insert_into_avl_tree(root, 10);
 	printf("\n");
@@ -180,3 +175,4 @@ int main()
 	printf("\n");
 	return 0;
 }
+#endif
