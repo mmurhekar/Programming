@@ -9,6 +9,7 @@
 
 #include "MeregeSort.h"
 #include "QuickSort.h"
+#include "Graph.h"
 
 static int test_mergesort( void  )
 {
@@ -56,6 +57,36 @@ static int test_quicksort( void  )
     return 1;
 }
 
+int  test_Graph(void)
+{
+    /* Graph_t *graph, *graph1; */
+    Graph_t *graph1;
+
+    /* graph = createGraph(5, 0); */
+/*     insertEdge(graph, 0, 1, 0); */
+    /* insertEdge(graph, 0, 4, 0); */
+    /* insertEdge(graph, 1, 2, 0); */
+    /* insertEdge(graph, 1, 3, 0); */
+    /* insertEdge(graph, 1, 4, 0); */
+    /* insertEdge(graph, 2, 3, 0); */
+    /* insertEdge(graph, 3, 4, 0); */
+
+    /* printGraph(graph); */
+
+    graph1 = createGraph(4, 0);
+    insertEdge(graph1, 0, 1, 0);
+    insertEdge(graph1, 0, 2, 0);
+    insertEdge(graph1, 1, 2, 0);
+    insertEdge(graph1, 2, 0, 0);
+    insertEdge(graph1, 2, 3, 0);
+    insertEdge(graph1, 3, 3, 0);
+
+    printGraph(graph1);
+    dfs_traversal(graph1, 0);
+
+    return 1;
+}
+
 gboolean test_thread(GIOChannel *source, GIOCondition condition, gpointer data)
 {
 	int rv;
@@ -78,6 +109,7 @@ gboolean test_thread(GIOChannel *source, GIOCondition condition, gpointer data)
 		printf("5       - Quick Sort (Algorithm)\n");
 		printf("6       - Array Left Rotation (Algorithm)\n");
 		printf("7       - Heap (Data Structure)\n");
+		printf("8       - Graph (Data Structure)\n");
 		printf("ENTER  - Show options menu.......\n");
 	}
 
@@ -103,8 +135,9 @@ gboolean test_thread(GIOChannel *source, GIOCondition condition, gpointer data)
 	case '7':
 //		rv = test_tethering_get_data_usage();
 		break;
-    default:
-        printf("Wrong Option\n");
+    case '8':
+        rv = test_Graph();
+        break;
 	}
 
 	if (rv == 1)

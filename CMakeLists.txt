@@ -16,6 +16,7 @@ SET(SRCS
     src/Linklist.c
     src/MergeSort.c
     src/QuickSort.c
+    src/Graph.c
     src/main.c
    )
 
