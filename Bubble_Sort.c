@@ -27,7 +27,6 @@ void bubble_sort(int *arr, int n)
 	}
 }
 
-#if 0
 int main ()
 {
 	int array[] = {-2, 0, -9, 45, 11, 4, 10};
@@ -48,4 +47,3 @@ int main ()
 
 	return 0;
 }
-#endif

@@ -2,8 +2,24 @@
  * Graph Data Structure */
 #include <stdio.h>
 #include <malloc.h>
+#include <stdbool.h>
 
-#include "Graph.h"
+typedef struct AdjNode_t {
+    int dest;
+    int wieght;
+    struct AdjNode_t *next;
+} AdjNode_t;
+
+typedef struct {
+    struct AdjNode_t *head;
+} AdjList_t;
+
+typedef struct {
+    int V;
+    int E;
+    AdjList_t *List;
+    bool *Visited;
+} Graph_t;
 
 AdjNode_t *newNode(int dest)
 {
@@ -74,3 +90,37 @@ void dfs_traversal(Graph_t *graph, int src)
         nodeptr = nodeptr->next;
     }
 }
+
+struct qnode {
+	int v;
+	int dist;
+};
+
+// Find all possible paths from source to destination with exactly m edges
+int totalPaths_bfs(Graph_t *graph, int src, int dest, int m)
+{
+	int count = 0;
+	queue<qnode> q;
+	q.push(src, 0);
+	
+	while (!q.empty())
+	{
+		qnode node = q.front();
+		q.pop();
+		
+		if (dest == node.v && node.dist == m)
+			count++;
+		
+		if (node.dist > m)
+			break;
+		
+		AdjNode_t *nodeptr = graph->List[node.v].head;
+		while (nodeptr) {
+			q.push(nodeptr->dest, node.dist + 1);
+			nodeptr = nodeptr->next;
+		}
+	}
+	
+	return count;
+}
+

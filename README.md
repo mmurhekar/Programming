@@ -1,2 +1,1 @@
-# Programming
-Data Structures &amp; Algorithms
+## Data Structure And Alogorithms Practice

@@ -3,7 +3,10 @@
 #include <stdio.h>
 #include <malloc.h>
 
-#include "LinkedList.h"
+typedef struct listNode_t {
+	int data;
+	struct listNode_t *next;
+} listNode;
 
 void insert_new_node(listNode **head, int data)
 {
@@ -187,7 +190,6 @@ void printList(listNode *head)
 	printf("\n");
 }
 
-#if 0
 int main ()
 {
 	listNode *head = NULL;
@@ -245,4 +247,3 @@ int main ()
 
 	return 0;
 }
-#endif

@@ -38,7 +38,7 @@ void quicksort(int *arr, int low, int high)
 		quicksort(arr, pi + 1, high);
 	}
 }
-#if 0
+
 int main ()
 {
 	int array[] = {-2, 0, -9, 45, 55, 67, 90, 2, 1, 5, 11, 4, 10, -100, 100};
@@ -60,4 +60,3 @@ int main ()
 
 	return 0;
 }
-#endif

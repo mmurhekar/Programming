@@ -3,7 +3,12 @@
 #include <stdio.h>
 #include <malloc.h>
 
-#include "AVL_Tree.h"
+typedef struct AVLNode_t {
+	int data;
+	struct AVLNode_t *left;
+	struct AVLNode_t *right;
+	int height;
+} AVLNode;
 
 #define max(a,b) (a>b)?a:b
 
@@ -119,7 +124,6 @@ void PrintInOrder(AVLNode *node)
 	PrintInOrder(node->right);
 }
 
-#if 0
 int main()
 {
 	AVLNode *root = NULL;
@@ -175,4 +179,3 @@ int main()
 	printf("\n");
 	return 0;
 }
-#endif

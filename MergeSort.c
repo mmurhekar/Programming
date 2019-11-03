@@ -61,7 +61,7 @@ void mergesort(int *arr, int l, int r)
 		merge(arr, l, mid, r);
 	}
 }
-#if 0
+
 int main ()
 {
 	int array[] = {-2, 0, -9, 45, 11, 4, 10};
@@ -83,4 +83,3 @@ int main ()
 
 	return 0;
 }
-#endif
